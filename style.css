@@ -1,0 +1,104 @@
+/* Allgemeine Formatierungen für den body */
+body {
+    background-image: url('images/background.jpg'); /* Pfad zum Bild */
+    background-size: cover; /* Bild wird auf den gesamten Bildschirm skaliert */
+    background-position: center; /* Bild wird zentriert */
+    background-attachment: fixed; /* Bild bleibt fixiert, wenn die Seite gescrollt wird */
+    background-repeat: no-repeat; /* Verhindert, dass das Bild wiederholt wird */
+    font-family: Arial, sans-serif; /* Schriftart für die gesamte Seite */
+    margin: 0;
+    padding: 0;
+}
+
+/* Weitere allgemeine Stile für die Seite */
+header {
+    background: #333;
+    color: #fff;
+    padding: 10px 20px;
+    text-align: center;
+}
+
+/* Hamburger Icon */
+.menu-icon {
+    cursor: pointer;
+    font-size: 30px;
+    color: rgb(41, 168, 37);
+}
+
+/* Menü standardmäßig ausblenden */
+nav {
+    visibility: hidden; /* Menü standardmäßig unsichtbar */
+    opacity: 0; /* Anfangs unsichtbar */
+    background-color: #333;
+    position: absolute;
+    width: 200px;
+    border-radius: 20px;
+    left: 44.5%;
+    top: 70px;
+    transform: translateY(0); /* Startposition: Menü ist bereits sichtbar in der Endposition */
+    transition: opacity 0.5s ease, visibility 0.5s ease; /* Übergang für Sichtbarkeit und Opazität */
+}
+
+/* Menü ist sichtbar und wird animiert, wenn es die Klasse 'active' hat */
+nav.active {
+    visibility: visible; /* Menü wird sichtbar */
+    opacity: 1; /* Menü wird sichtbar */
+    animation: flyIn 2.5s ease-in-out; /* Animation wird aktiviert */
+}
+
+/* Keyframe-Animation: Das Menü fliegt für 3 Sekunden */
+@keyframes flyIn {
+    0% {
+        transform: translateY(-100%) rotate(0deg);
+    }
+    50% {
+        transform: translateY(300px) rotate(180deg);
+    }
+    100% {
+        transform: translateY(0) rotate(360deg);
+    }
+}
+
+/* Allgemeine Stile für die Navigation */
+nav ul {
+    list-style-type: none; /* Entfernt die Aufzählungszeichen */
+    padding: 0;
+    margin: 0;
+}
+
+/* Stil für die einzelnen Menüeinträge */
+nav ul li {
+    margin-bottom: 10px; /* Abstand zwischen den Menüeinträgen */
+}
+
+/* Stil für die Links (Menüeinträge) */
+nav ul li a {
+    color: white; /* Textfarbe */
+    font-size: 18px; /* Schriftgröße */
+    font-family: Arial, sans-serif; /* Schriftart */
+    text-decoration: none; /* Entfernt die Unterstreichung */
+    padding: 10px 15px; /* Abstand innerhalb der Links */
+    display: block; /* Macht den gesamten Link klickbar */
+    border-radius: 5px; /* Abgerundete Ecken */
+    transition: background-color 0.3s ease; /* Übergang für Hintergrundfarbe */
+}
+
+/* Hover-Effekt für die Links (wenn der Mauszeiger darüber fährt) */
+nav ul li a:hover {
+    background-color: #555; /* Dunklerer Hintergrund, wenn der Link angeklickt wird */
+    color: #ff0; /* Ändert die Textfarbe beim Hover */
+}
+
+/* Sektionen verstecken, wenn sie nicht angezeigt werden sollen */
+section.hidden {
+    display: none; /* Sektionen sind standardmäßig verborgen */
+}
+
+/* Main Content */
+main {
+    padding: 20px;
+}
+
+section {
+    margin-bottom: 40px;
+}

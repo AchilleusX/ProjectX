@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meine Webseite</title>
+    <link rel="stylesheet" href="style.css"> <!-- Link zur externen CSS-Datei -->
+</head>
+<body>
+    <header>
+        <!-- Hamburger-Icon (3 Striche) -->
+        <div class="menu-icon" onclick="toggleMenu(event)">
+            &#9776; <!-- Das Zeichen für das Hamburger-Menü (3 Striche) -->
+        </div>
+        
+        <!-- Menü (zunächst verborgen) -->
+        <nav id="menu" class="closed">
+            <ul>
+                <li><a href="javascript:void(0);" onclick="showSection('about')">Über Mich</a></li>
+                <li><a href="javascript:void(0);" onclick="showSection('portfolio')">Portfolio</a></li>
+                <li><a href="javascript:void(0);" onclick="showSection('contact')">Kontakt</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Sektion "Über Mich" -->
+        <section id="about" class="hidden">
+            <h2>Über Mich</h2>
+            <p>Dies ist die „Über mich“-Sektion.</p>
+        </section>
+
+        <!-- Sektion "Portfolio" -->
+        <section id="portfolio" class="hidden">
+            <h2>Portfolio</h2>
+            <p>Hier geht es zu meinem Portfolio.</p>
+        </section>
+
+        <!-- Sektion "Kontakt" -->
+        <section id="contact" class="hidden">
+            <h2>Kontakt</h2>
+            <p>Kontaktinformationen hier.</p>
+        </section>
+    </main>
+
+    <script>
+        let menuAnimationState = "closed"; // "closed", "opening", "open"
+        let isAnimating = false; // Flag, um zu prüfen, ob die Animation läuft
+
+        // Funktion zum Umschalten des Menüs
+        function toggleMenu(event) {
+            var menu = document.getElementById("menu");
+
+            if (menuAnimationState === "closed") {
+                // Menü öffnen mit Animation
+                menuAnimationState = "opening";
+                isAnimating = true; // Animation läuft
+                menu.classList.add("active");
+                menu.style.visibility = "visible";
+                menu.style.opacity = "1";
+
+                // Verhindern, dass eine neue Animation gestartet wird
+                menu.style.animation = 'flyIn 2.5s ease-in-out';
+
+                // Nach Abschluss der Animation Zustand auf "open" setzen
+                menu.addEventListener("animationend", onAnimationEnd);
+            } else if (menuAnimationState === "opening" && isAnimating) {
+                // Zweiter Klick: Animation abbrechen und sofort öffnen
+                menuAnimationState = "open";
+                isAnimating = false; // Animation sofort beenden
+                menu.classList.add("active");
+                menu.style.visibility = "visible";
+                menu.style.opacity = "1";
+                menu.style.animation = 'none'; // Animation abbrechen
+            } else if (menuAnimationState === "open") {
+                // Dritter Klick: Menü schließen
+                menuAnimationState = "closed";
+                menu.classList.remove("active");
+                setTimeout(function() {
+                    if (menuAnimationState === "closed") {
+                        menu.style.visibility = "hidden";
+                        menu.style.opacity = "0";
+                    }
+                }, 50); // Verzögerung, um die Transition zu vermeiden
+            }
+
+            event.stopPropagation(); // Klicks am Hamburger-Menü verhindern das Schließen
+        }
+
+        function onAnimationEnd() {
+            if (menuAnimationState === "opening") {
+                menuAnimationState = "open"; // Wenn die Animation beendet ist, Menü als "offen" setzen
+                isAnimating = false;
+                this.removeEventListener("animationend", onAnimationEnd); // Eventlistener entfernen
+            }
+        }
+
+        // Funktion zum Anzeigen der jeweiligen Sektion
+        function showSection(sectionId) {
+            // Alle Sektionen verstecken
+            var sections = document.querySelectorAll('section');
+            sections.forEach(function(section) {
+                section.classList.add('hidden'); // Fügt die 'hidden' Klasse hinzu, die die Sektion versteckt
+            });
+
+            // Die angeklickte Sektion anzeigen
+            var section = document.getElementById(sectionId);
+            section.classList.remove('hidden'); // Entfernt die 'hidden' Klasse, um die Sektion anzuzeigen
+        }
+
+        // Eventlistener, um das Menü zu schließen, wenn irgendwo außerhalb des Menüs oder der Sektionen geklickt wird
+        document.addEventListener('click', function(event) {
+            var menu = document.getElementById("menu");
+            var menuIcon = document.querySelector(".menu-icon");
+            var sections = document.querySelectorAll('section');
+            
+            // Überprüfen, ob der Klick außerhalb des Menüs oder der Sektionen war
+            if (!menu.contains(event.target) && !menuIcon.contains(event.target) && !isSectionContentClicked(event)) {
+                if (menu.classList.contains("active")) {
+                    menuAnimationState = "closed";
+                    menu.classList.remove("active");
+                    menu.style.visibility = "hidden"; // Menü wird unsichtbar
+                    menu.style.opacity = "0"; // Menü wird unsichtbar
+                }
+                // Alle Sektionen wieder verstecken
+                sections.forEach(function(section) {
+                    section.classList.add('hidden'); // Alle Sektionen verstecken
+                });
+            }
+        });
+
+        // Hilfsfunktion, um zu überprüfen, ob der Klick in einer der sichtbaren Sektionen war
+        function isSectionContentClicked(event) {
+            var sections = document.querySelectorAll('section');
+            return Array.from(sections).some(function(section) {
+                return section.contains(event.target); // Überprüft, ob der Klick in einer der Sektionen war
+            });
+        }
+    </script>
+</body>
+</html>
