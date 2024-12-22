@@ -4,16 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Meine Webseite</title>
-    <link rel="stylesheet" href="style.css"> <!-- Link zur externen CSS-Datei -->
+    <link rel="stylesheet" href="style.css"> <!-- Link to the external CSS file -->
 </head>
 <body>
     <header>
-        <!-- Hamburger-Icon (3 Striche) -->
+        <!-- Hamburger icon (3 lines) -->
         <div class="menu-icon" onclick="toggleMenu(event)">
-            &#9776; <!-- Das Zeichen für das Hamburger-Menü (3 Striche) -->
+            &#9776; <!-- The symbol for the hamburger menu (3 lines) -->
         </div>
         
-        <!-- Menü (zunächst verborgen) -->
+        <!-- Menu (initially hidden) -->
         <nav id="menu" class="closed">
             <ul>
                 <li><a href="javascript:void(0);" onclick="showSection('about')">Über Mich</a></li>
@@ -24,56 +24,56 @@
     </header>
 
     <main>
-        <!-- Sektion "Über Mich" -->
+        <!-- Section "About Me" -->
         <section id="about" class="hidden">
             <h2>Über Mich</h2>
-            <p>Dies ist die „Über mich“-Sektion.</p>
+            <p>This is the "About Me" section.</p>
         </section>
 
-        <!-- Sektion "Portfolio" -->
+        <!-- Section "Blog" -->
         <section id="blog" class="hidden">
             <h2>Blog</h2>
-            <p>Hier geht es zu meinem Blog.</p>
+            <p>Here is my blog.</p>
         </section>
 
-        <!-- Sektion "Kontakt" -->
+        <!-- Section "Contact" -->
         <section id="contact" class="hidden">
             <h2>Kontakt</h2>
-            <p>Kontaktinformationen hier.</p>
+            <p>Contact information here.</p>
         </section>
     </main>
 
     <script>
         let menuAnimationState = "closed"; // "closed", "opening", "open"
-        let isAnimating = false; // Flag, um zu prüfen, ob die Animation läuft
+        let isAnimating = false; // Flag to check if the animation is running
 
-        // Funktion zum Umschalten des Menüs
+        // Function to toggle the menu
         function toggleMenu(event) {
             var menu = document.getElementById("menu");
 
             if (menuAnimationState === "closed") {
-                // Menü öffnen mit Animation
+                // Open menu with animation
                 menuAnimationState = "opening";
-                isAnimating = true; // Animation läuft
+                isAnimating = true; // Animation is running
                 menu.classList.add("active");
                 menu.style.visibility = "visible";
                 menu.style.opacity = "1";
 
-                // Verhindern, dass eine neue Animation gestartet wird
+                // Prevent a new animation from starting
                 menu.style.animation = 'flyIn 2.5s ease-in-out';
 
-                // Nach Abschluss der Animation Zustand auf "open" setzen
+                // After the animation is completed, set state to "open"
                 menu.addEventListener("animationend", onAnimationEnd);
             } else if (menuAnimationState === "opening" && isAnimating) {
-                // Zweiter Klick: Animation abbrechen und sofort öffnen
+                // Second click: cancel animation and open immediately
                 menuAnimationState = "open";
-                isAnimating = false; // Animation sofort beenden
+                isAnimating = false; // End animation immediately
                 menu.classList.add("active");
                 menu.style.visibility = "visible";
                 menu.style.opacity = "1";
-                menu.style.animation = 'none'; // Animation abbrechen
+                menu.style.animation = 'none'; // Cancel animation
             } else if (menuAnimationState === "open") {
-                // Dritter Klick: Menü schließen
+                // Third click: close menu
                 menuAnimationState = "closed";
                 menu.classList.remove("active");
                 setTimeout(function() {
@@ -81,59 +81,59 @@
                         menu.style.visibility = "hidden";
                         menu.style.opacity = "0";
                     }
-                }, 50); // Verzögerung, um die Transition zu vermeiden
+                }, 50); // Delay to avoid transition issues
             }
 
-            event.stopPropagation(); // Klicks am Hamburger-Menü verhindern das Schließen
+            event.stopPropagation(); // Prevent clicks on the hamburger menu from closing it
         }
 
         function onAnimationEnd() {
             if (menuAnimationState === "opening") {
-                menuAnimationState = "open"; // Wenn die Animation beendet ist, Menü als "offen" setzen
+                menuAnimationState = "open"; // When the animation ends, set the menu as "open"
                 isAnimating = false;
-                this.removeEventListener("animationend", onAnimationEnd); // Eventlistener entfernen
+                this.removeEventListener("animationend", onAnimationEnd); // Remove event listener
             }
         }
 
-        // Funktion zum Anzeigen der jeweiligen Sektion
+        // Function to show the respective section
         function showSection(sectionId) {
-            // Alle Sektionen verstecken
+            // Hide all sections
             var sections = document.querySelectorAll('section');
             sections.forEach(function(section) {
-                section.classList.add('hidden'); // Fügt die 'hidden' Klasse hinzu, die die Sektion versteckt
+                section.classList.add('hidden'); // Adds the 'hidden' class to hide the section
             });
 
-            // Die angeklickte Sektion anzeigen
+            // Show the clicked section
             var section = document.getElementById(sectionId);
-            section.classList.remove('hidden'); // Entfernt die 'hidden' Klasse, um die Sektion anzuzeigen
+            section.classList.remove('hidden'); // Removes the 'hidden' class to show the section
         }
 
-        // Eventlistener, um das Menü zu schließen, wenn irgendwo außerhalb des Menüs oder der Sektionen geklickt wird
+        // Event listener to close the menu when clicking anywhere outside the menu or sections
         document.addEventListener('click', function(event) {
             var menu = document.getElementById("menu");
             var menuIcon = document.querySelector(".menu-icon");
             var sections = document.querySelectorAll('section');
             
-            // Überprüfen, ob der Klick außerhalb des Menüs oder der Sektionen war
+            // Check if the click was outside the menu or sections
             if (!menu.contains(event.target) && !menuIcon.contains(event.target) && !isSectionContentClicked(event)) {
                 if (menu.classList.contains("active")) {
                     menuAnimationState = "closed";
                     menu.classList.remove("active");
-                    menu.style.visibility = "hidden"; // Menü wird unsichtbar
-                    menu.style.opacity = "0"; // Menü wird unsichtbar
+                    menu.style.visibility = "hidden"; // Make menu invisible
+                    menu.style.opacity = "0"; // Make menu invisible
                 }
-                // Alle Sektionen wieder verstecken
+                // Hide all sections again
                 sections.forEach(function(section) {
-                    section.classList.add('hidden'); // Alle Sektionen verstecken
+                    section.classList.add('hidden'); // Hide all sections
                 });
             }
         });
 
-        // Hilfsfunktion, um zu überprüfen, ob der Klick in einer der sichtbaren Sektionen war
+        // Helper function to check if the click was inside one of the visible sections
         function isSectionContentClicked(event) {
             var sections = document.querySelectorAll('section');
             return Array.from(sections).some(function(section) {
-                return section.contains(event.target); // Überprüft, ob der Klick in einer der Sektionen war
+                return section.contains(event.target); // Check if the click was inside one of the sections
             });
         }
     </script>

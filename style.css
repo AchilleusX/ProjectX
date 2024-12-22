@@ -1,16 +1,16 @@
-/* Allgemeine Formatierungen für den body */
+/* General formatting for the body */
 body {
-    background-image: url('images/background.jpg'); /* Pfad zum Bild */
-    background-size: cover; /* Bild wird auf den gesamten Bildschirm skaliert */
-    background-position: center; /* Bild wird zentriert */
-    background-attachment: fixed; /* Bild bleibt fixiert, wenn die Seite gescrollt wird */
-    background-repeat: no-repeat; /* Verhindert, dass das Bild wiederholt wird */
-    font-family: Arial, sans-serif; /* Schriftart für die gesamte Seite */
+    background-image: url('images/background.jpg'); /* Path to the image */
+    background-size: cover; /* Scale the image to cover the entire screen */
+    background-position: center; /* Center the image */
+    background-attachment: fixed; /* Image remains fixed when scrolling the page */
+    background-repeat: no-repeat; /* Prevent the image from repeating */
+    font-family: Arial, sans-serif; /* Font for the entire page */
     margin: 0;
     padding: 0;
 }
 
-/* Weitere allgemeine Stile für die Seite */
+/* Additional general styles for the page */
 header {
     background: #333;
     color: #fff;
@@ -18,35 +18,35 @@ header {
     text-align: center;
 }
 
-/* Hamburger Icon */
+/* Hamburger icon */
 .menu-icon {
     cursor: pointer;
     font-size: 30px;
     color: rgb(41, 168, 37);
 }
 
-/* Menü standardmäßig ausblenden */
+/* Hide the menu by default */
 nav {
-    visibility: hidden; /* Menü standardmäßig unsichtbar */
-    opacity: 0; /* Anfangs unsichtbar */
+    visibility: hidden; /* Menu is hidden by default */
+    opacity: 0; /* Initially invisible */
     background-color: #333;
     position: absolute;
     width: 200px;
     border-radius: 20px;
     left: 44.5%;
     top: 70px;
-    transform: translateY(0); /* Startposition: Menü ist bereits sichtbar in der Endposition */
-    transition: opacity 0.5s ease, visibility 0.5s ease; /* Übergang für Sichtbarkeit und Opazität */
+    transform: translateY(0); /* Start position: menu is already visible in its final position */
+    transition: opacity 0.5s ease, visibility 0.5s ease; /* Transition for visibility and opacity */
 }
 
-/* Menü ist sichtbar und wird animiert, wenn es die Klasse 'active' hat */
+/* Menu is visible and animated when it has the 'active' class */
 nav.active {
-    visibility: visible; /* Menü wird sichtbar */
-    opacity: 1; /* Menü wird sichtbar */
-    animation: flyIn 2.5s ease-in-out; /* Animation wird aktiviert */
+    visibility: visible; /* Menu becomes visible */
+    opacity: 1; /* Menu becomes visible */
+    animation: flyIn 2.5s ease-in-out; /* Animation is triggered */
 }
 
-/* Keyframe-Animation: Das Menü fliegt für 3 Sekunden */
+/* Keyframe animation: The menu flies in for 3 seconds */
 @keyframes flyIn {
     0% {
         transform: translateY(-100%) rotate(0deg);
@@ -59,42 +59,42 @@ nav.active {
     }
 }
 
-/* Allgemeine Stile für die Navigation */
+/* General styles for the navigation */
 nav ul {
-    list-style-type: none; /* Entfernt die Aufzählungszeichen */
+    list-style-type: none; /* Remove list bullets */
     padding: 0;
     margin: 0;
 }
 
-/* Stil für die einzelnen Menüeinträge */
+/* Style for individual menu items */
 nav ul li {
-    margin-bottom: 10px; /* Abstand zwischen den Menüeinträgen */
+    margin-bottom: 10px; /* Space between menu items */
 }
 
-/* Stil für die Links (Menüeinträge) */
+/* Style for links (menu items) */
 nav ul li a {
-    color: white; /* Textfarbe */
-    font-size: 18px; /* Schriftgröße */
-    font-family: Arial, sans-serif; /* Schriftart */
-    text-decoration: none; /* Entfernt die Unterstreichung */
-    padding: 10px 15px; /* Abstand innerhalb der Links */
-    display: block; /* Macht den gesamten Link klickbar */
-    border-radius: 5px; /* Abgerundete Ecken */
-    transition: background-color 0.3s ease; /* Übergang für Hintergrundfarbe */
+    color: white; /* Text color */
+    font-size: 18px; /* Font size */
+    font-family: Arial, sans-serif; /* Font family */
+    text-decoration: none; /* Remove underlining */
+    padding: 10px 15px; /* Padding inside the links */
+    display: block; /* Make the entire link clickable */
+    border-radius: 5px; /* Rounded corners */
+    transition: background-color 0.3s ease; /* Transition for background color */
 }
 
-/* Hover-Effekt für die Links (wenn der Mauszeiger darüber fährt) */
+/* Hover effect for links (when the mouse is over them) */
 nav ul li a:hover {
-    background-color: #555; /* Dunklerer Hintergrund, wenn der Link angeklickt wird */
-    color: #ff0; /* Ändert die Textfarbe beim Hover */
+    background-color: #555; /* Darker background when the link is hovered */
+    color: #ff0; /* Change text color on hover */
 }
 
-/* Sektionen verstecken, wenn sie nicht angezeigt werden sollen */
+/* Hide sections when they should not be displayed */
 section.hidden {
-    display: none; /* Sektionen sind standardmäßig verborgen */
+    display: none; /* Sections are hidden by default */
 }
 
-/* Main Content */
+/* Main content */
 main {
     padding: 20px;
 }
