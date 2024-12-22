@@ -69,6 +69,7 @@ nav ul {
 /* Style for individual menu items */
 nav ul li {
     margin-bottom: 10px; /* Space between menu items */
+    position: relative; /* For teaser positioning */
 }
 
 /* Style for links (menu items) */
@@ -87,6 +88,25 @@ nav ul li a {
 nav ul li a:hover {
     background-color: #555; /* Darker background when the link is hovered */
     color: #ff0; /* Change text color on hover */
+}
+
+/* Teaser-Container */
+.teaser {
+    position: absolute;
+    left: 220px; /* Rechts neben dem Menü */
+    top: 0;
+    background-color: rgba(50, 50, 50, 0.9); /* Dunkler Hintergrund mit Transparenz */
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+    width: 150px;
+    z-index: 1000; /* Überlagert andere Inhalte */
+    display: none; /* Standardmäßig ausgeblendet */
+}
+
+/* Teaser anzeigen */
+.teaser.visible {
+    display: block;
 }
 
 /* Hide sections when they should not be displayed */

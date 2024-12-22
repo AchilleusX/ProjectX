@@ -16,9 +16,18 @@
         <!-- Menu (initially hidden) -->
         <nav id="menu" class="closed">
             <ul>
-                <li><a href="javascript:void(0);" onclick="showSection('about')">Über Mich</a></li>
-                <li><a href="javascript:void(0);" onclick="showSection('blog')">Blog</a></li>
-                <li><a href="javascript:void(0);" onclick="showSection('contact')">Kontakt</a></li>
+                <li onmouseover="showTeaser('teaser-about')" onmouseout="hideTeaser('teaser-about')">
+                    <a href="about-me.html">Über Mich</a>
+                    <div id="teaser-about" class="teaser hidden">Hier erfährst du mehr über mich!</div>
+                </li>
+                <li onmouseover="showTeaser('teaser-blog')" onmouseout="hideTeaser('teaser-blog')">
+                    <a href="blog.html">Blog</a>
+                    <div id="teaser-blog" class="teaser hidden">Hier sind meine neuesten Blog-Posts!</div>
+                </li>
+                <li onmouseover="showTeaser('teaser-contact')" onmouseout="hideTeaser('teaser-contact')">
+                    <a href="contact.html">Kontakt</a>
+                    <div id="teaser-contact" class="teaser hidden">Nimm Kontakt mit mir auf!</div>
+                </li>
             </ul>
         </nav>
     </header>
@@ -135,6 +144,18 @@
             return Array.from(sections).some(function(section) {
                 return section.contains(event.target); // Check if the click was inside one of the sections
             });
+        }
+
+        function showTeaser(teaserId) {
+            var teaser = document.getElementById(teaserId);
+            teaser.classList.remove('hidden');
+            teaser.classList.add('visible');
+        }
+
+        function hideTeaser(teaserId) {
+            var teaser = document.getElementById(teaserId);
+            teaser.classList.remove('visible');
+            teaser.classList.add('hidden');
         }
     </script>
 </body>
