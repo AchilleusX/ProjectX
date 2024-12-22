@@ -3,23 +3,47 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Blog</title>
-    <link rel="stylesheet" href="../css/style.css">
+    <title>Blog - Kontinente</title>
+    <link rel="stylesheet" href="../css/style.css"> <!-- Allgemeines Styling -->
+    <link rel="stylesheet" href="../css/blog.css"> <!-- Spezifisches Styling -->
 </head>
 <body>
     <header>
-        <nav>
-            <ul>
-                <li><a href="index.html">Startseite</a></li>
-                <li><a href="about-me.html">Über Mich</a></li>
-                <li><a href="contact.html">Kontakt</a></li>
-            </ul>
-        </nav>
+        <h1>Entdecke die Kontinente</h1>
+        <p>Klicke auf einen Kontinent, um mehr zu erfahren!</p>
     </header>
     <main>
-        <h1>Blog</h1>
-        <p>Willkommen auf meinem Blog! Hier teile ich meine neuesten Gedanken und Artikel.</p>
+        <div class="continent-container">
+            <!-- Afrika -->
+            <div class="continent">
+                <a href="africa.html">
+                    <div class="image-overlay">
+                        <img src="../images/africa.jpg" alt="Afrika">
+                        <div class="title">Afrika</div>
+                    </div>
+                </a>
+            </div>
+
+            <!-- Asien -->
+            <div class="continent">
+                <a href="asia.html">
+                    <div class="image-overlay">
+                        <img src="../images/asia.jpg" alt="Asien">
+                        <div class="title">Asien</div>
+                    </div>
+                </a>
+            </div>
+
+            <!-- Australien -->
+            <div class="continent">
+                <a href="australia.html">
+                    <div class="image-overlay">
+                        <img src="../images/australia.jpg" alt="Australien">
+                        <div class="title">Australien</div>
+                    </div>
+                </a>
+            </div>
+        </div>
     </main>
 </body>
 </html>
-
