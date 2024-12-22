@@ -1,6 +1,6 @@
 /* General formatting for the body */
 body {
-    background-image: url('images/background.jpg'); /* Path to the image */
+    background-image: url('../images/background.jpg'); /* Path to the image */
     background-size: cover; /* Scale the image to cover the entire screen */
     background-position: center; /* Center the image */
     background-attachment: fixed; /* Image remains fixed when scrolling the page */

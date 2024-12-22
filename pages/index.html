@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Meine Webseite</title>
-    <link rel="stylesheet" href="style.css"> <!-- Link to the external CSS file -->
+    <!-- Passe den Pfad zur CSS-Datei an -->
+    <link rel="stylesheet" href="../css/style.css">
 </head>
 <body>
     <header>
@@ -16,6 +17,7 @@
         <!-- Menu (initially hidden) -->
         <nav id="menu" class="closed">
             <ul>
+                <!-- Passe die Links zu den HTML-Dateien an -->
                 <li onmouseover="showTeaser('teaser-about')" onmouseout="hideTeaser('teaser-about')">
                     <a href="about-me.html">Über Mich</a>
                     <div id="teaser-about" class="teaser hidden">Hier erfährst du mehr über mich!</div>
@@ -52,6 +54,7 @@
         </section>
     </main>
 
-    <script src="js/animation.js"></script>
+    <!-- Passe den Pfad zur JavaScript-Datei an -->
+    <script src="../js/animation.js"></script>
 </body>
 </html>
