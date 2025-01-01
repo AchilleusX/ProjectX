@@ -6,39 +6,36 @@ function toggleMenu(event) {
     var menu = document.getElementById("menu");
 
     if (menuAnimationState === "closed") {
-        // Open menu with animation
+        // Setze Menü in den Ursprungszustand zurück, bevor es geöffnet wird
+        closeMenu(); 
+
+        // Öffne das Menü mit Animation
         menuAnimationState = "opening";
-        isAnimating = true; // Animation is running
+        isAnimating = true; // Animation ist aktiv
         menu.classList.add("active");
         menu.style.visibility = "visible";
         menu.style.opacity = "1";
 
-        // Prevent a new animation from starting
+        // Starte die Animation
         menu.style.animation = 'flyIn 2.5s ease-in-out';
 
-        // After the animation is completed, set state to "open"
+        // Setze den Zustand nach der Animation auf "open"
         menu.addEventListener("animationend", onAnimationEnd);
     } else if (menuAnimationState === "opening" && isAnimating) {
-        // Second click: cancel animation and open immediately
+        // Zweiter Klick: Animation abbrechen und sofort öffnen
         menuAnimationState = "open";
-        isAnimating = false; // End animation immediately
+        isAnimating = false; // Animation sofort beenden
         menu.classList.add("active");
         menu.style.visibility = "visible";
         menu.style.opacity = "1";
-        menu.style.animation = 'none'; // Cancel animation
+        menu.style.animation = 'none'; // Animation abbrechen
     } else if (menuAnimationState === "open") {
-        // Third click: close menu
+        // Dritter Klick: Menü schließen
         menuAnimationState = "closed";
-        menu.classList.remove("active");
-        setTimeout(function() {
-            if (menuAnimationState === "closed") {
-                menu.style.visibility = "hidden";
-                menu.style.opacity = "0";
-            }
-        }, 50); // Delay to avoid transition issues
+        closeMenu();
     }
 
-    event.stopPropagation(); // Prevent clicks on the hamburger menu from closing it
+    event.stopPropagation(); // Verhindere, dass Klicks das Menü schließen
 }
 
 function onAnimationEnd() {
@@ -72,9 +69,7 @@ document.addEventListener('click', function(event) {
     if (!menu.contains(event.target) && !menuIcon.contains(event.target) && !isSectionContentClicked(event)) {
         if (menu.classList.contains("active")) {
             menuAnimationState = "closed";
-            menu.classList.remove("active");
-            menu.style.visibility = "hidden"; // Make menu invisible
-            menu.style.opacity = "0"; // Make menu invisible
+            closeMenu();
         }
         // Hide all sections again
         sections.forEach(function(section) {
@@ -103,3 +98,34 @@ function hideTeaser(teaserId) {
     teaser.classList.add('hidden');
 }
 
+// Funktion, um das Dropdown-Menü zu schließen und zurückzusetzen
+function closeMenu() {
+    var menu = document.getElementById("menu");
+    var teasers = document.querySelectorAll('.teaser');
+    var menuItems = menu.querySelectorAll("a");
+
+    // Schließe das Menü und setze den Zustand zurück
+    menuAnimationState = "closed";
+    menu.classList.remove("active");
+    menu.style.visibility = "hidden";
+    menu.style.opacity = "0";
+
+    // Teaser zurücksetzen (alle Teaser ausblenden)
+    teasers.forEach(function(teaser) {
+        teaser.classList.remove('visible');
+        teaser.classList.add('hidden');
+    });
+
+    // Entferne aktive Zustände von Menüelementen
+    menuItems.forEach(function(item) {
+        item.classList.remove("selected"); // Entfernt z. B. eine Klasse 'selected', falls verwendet
+    });
+}
+
+// Event-Listener für Klicks auf Menüpunkte
+var menuLinks = document.querySelectorAll("#menu a"); // Selektiere alle Links im Menü
+menuLinks.forEach(function(link) {
+    link.addEventListener("click", function() {
+        closeMenu(); // Schließe das Menü, wenn ein Menüpunkt geklickt wird
+    });
+});
